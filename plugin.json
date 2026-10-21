@@ -1,0 +1,6 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "kedify",
+  "version": "0.1.0",
+  "description": "Recommend Kubernetes CPU and memory resources for live workloads and GitOps repositories using kedr, and inspect organizations, clusters, agents, savings, and autoscaling through Kedify's Auth0-protected MCP server at https://mcp.kedify.io/mcp."
+}
