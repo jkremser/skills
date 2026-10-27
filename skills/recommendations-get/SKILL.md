@@ -1,8 +1,9 @@
 ---
 name: recommendations-get
 description: >-
-  Retrieve Kubernetes CPU and memory recommendations through Kedify MCP or a
-  local kedr scan. Use when the user wants to inspect or collect recommendations.
+  Retrieve Kubernetes CPU and memory recommendations through Kedify MCP, a
+  local kedr scan, or a Kedify Dashboard JSON, CSV, or Markdown export. Use when
+  the user wants to inspect, collect, or read exported recommendations.
 ---
 
 # Get resource recommendations
@@ -14,16 +15,19 @@ the result.
 
 ## 1. Ask which retrieval source to use
 
-First ask whether the user wants **Kedify MCP** or **local kedr**, unless they
-already explicitly chose a source. Explain the prerequisites with the choice:
+First ask whether the user wants **Kedify MCP**, **local kedr**, or a **Dashboard
+export file**, unless they already chose a source. A supplied export file or path
+chooses the file source; read it without asking again. Explain the prerequisites
+with the choice:
 
 | Source | Requirements and environment |
 | --- | --- |
 | Kedify MCP | A connected Kedify account, an installed and running Kedify agent in the target cluster, and pod metrics collection enabled for the relevant namespaces. The agent must have scraped metrics long enough to produce recommendations. Works without access to the user's local kubeconfig, including from a hosted UI with the MCP connection. |
 | Local kedr | A terminal with access to the user's kubeconfig and Kubernetes API, plus an existing reachable Prometheus-compatible service with pod CPU/memory usage and kube-state-metrics (KSM) data. A ChatGPT web session without access to the user's machine/cluster cannot run this local workflow. |
+| Dashboard export file | A readable JSON, CSV, or Markdown file created by clicking **Export** in Kedify Dashboard, supplied as an attachment or local path. No MCP connection, kubeconfig, or metrics access is required to read it. |
 
-Explain that namespace collection for MCP can be enabled in the Kedify web UI or
-with the namespace label:
+For the MCP source, explain that namespace collection can be enabled in the
+Kedify web UI or with the namespace label:
 
 ```sh
 kubectl --context "$RECOMMENDATIONS_CONTEXT" \
@@ -36,7 +40,7 @@ Enabling collection does not immediately create sufficient history. Report the
 actual evidence/coverage limitations; do not invent a universal waiting period.
 
 If the chosen method is unavailable, explain what is missing and offer the other
-method. Obtain the user's choice before switching. Do not install an agent or
+sources. Obtain the user's choice before switching. Do not install an agent or
 monitoring stack, or alter namespace labels, merely to obtain a result.
 
 ## 2. Retrieve through the chosen source
@@ -49,6 +53,8 @@ Read only the relevant adapter:
 - **Kedr:** [local kedr retrieval](references/kedr.md). Ask which Kubernetes
   context to use before contacting a cluster, honor an already-specified
   context, and bind the inventory and scan to it.
+- **File:** [Dashboard export import](references/dashboard-export.md). Read the
+  supplied JSON, CSV, or Markdown snapshot and normalize its explicit proposals.
 
 Honor any namespace, workload, resource, or evidence filters already supplied.
 Preserve partial failures and empty results; neither is permission to expand the
