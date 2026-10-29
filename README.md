@@ -69,7 +69,7 @@ Use $otel-autoscaling-diagnose: the metric is in Grafana, but checkout isn't sca
 Add the GitHub repository as a marketplace, then install the Kedify plugin:
 
 ```sh
-codex plugin marketplace add jkremser/skills
+codex plugin marketplace add kedify/skills
 codex plugin add kedify@kedify
 ```
 
