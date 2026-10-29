@@ -2,28 +2,28 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "kedify",
   "version": "0.1.0",
-  "description": "Retrieve Kubernetes CPU and memory recommendations through Kedify MCP or local kedr, apply selected changes through GitOps pull requests or kubectl, and inspect organizations, clusters, agents, savings, and autoscaling through Kedify's Auth0-protected MCP server at https://mcp.kedify.io/mcp.",
+  "description": "Set up and diagnose KEDA autoscaling with the Kedify OTel add-on and existing app metrics. Retrieve Kubernetes CPU and memory recommendations through Kedify MCP or local kedr, apply selected changes through GitOps or kubectl, and inspect Kedify organizations, clusters, agents, savings, and autoscaling through MCP.",
   "author": {
     "name": "Kedify",
     "url": "https://kedify.io"
   },
   "homepage": "https://kedify.io",
   "repository": "https://github.com/jkremser/skills",
-  "keywords": ["kubernetes", "resource-optimization", "gitops", "kedr", "mcp"],
+  "keywords": ["kubernetes", "resource-optimization", "gitops", "kedr", "mcp", "opentelemetry", "keda", "autoscaling"],
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Kedify",
-        "shortDescription": "Kubernetes resource tuning",
-        "longDescription": "Retrieve CPU and memory recommendations through Kedify MCP or local kedr, review the proposed changes, and apply selected recommendations through GitOps pull requests or kubectl. Inspect Kedify organizations, clusters, agents, savings, and autoscaling diagnostics. MCP recommendations require a running Kedify agent with namespace metrics collection and sufficient history. Local kedr and kubectl workflows require direct cluster access.",
+        "shortDescription": "Kubernetes tuning and autoscaling",
+        "longDescription": "Set up and diagnose KEDA autoscaling through the Kedify OTel add-on using existing app metrics and monitoring pipelines. OTel workflows use local tools without a Dashboard account; they can prepare configuration without cluster access. Retrieve CPU and memory recommendations through Kedify MCP or local kedr and apply changes through GitOps or kubectl. Inspect Kedify organizations, clusters, agents, savings, and autoscaling diagnostics through MCP. MCP recommendations require a running Kedify agent with namespace metrics collection and sufficient history. Local kedr and live application require direct cluster access.",
         "developerName": "Kedify",
         "category": "Developer Tools",
         "capabilities": ["Read", "Write"],
         "websiteURL": "https://kedify.io",
         "defaultPrompt": [
           "Get CPU and memory recommendations for my Kubernetes workloads.",
-          "Prepare a GitOps pull request for the recommendations I select.",
-          "Apply selected resource recommendations directly with kubectl."
+          "Set up OTel-based KEDA autoscaling for my app using our existing metrics.",
+          "Diagnose why my OTel add-on metric is not scaling the workload."
         ],
         "brandColor": "#5B42FF",
         "composerIcon": "./assets/kedify.png",

@@ -1,0 +1,3 @@
+interface:
+  display_name: "OTel Autoscaling Setup"
+  short_description: "Connect app metrics to KEDA autoscaling"

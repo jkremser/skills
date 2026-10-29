@@ -1,0 +1,3 @@
+interface:
+  display_name: "OTel Autoscaling Diagnosis"
+  short_description: "Trace metric delivery and KEDA scaling failures"
